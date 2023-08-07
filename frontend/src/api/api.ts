@@ -1,7 +1,7 @@
 import { UserInfo, ConversationRequest } from "./models";
 
 export async function conversationApi(options: ConversationRequest, abortSignal: AbortSignal): Promise<Response> {
-    const response = await fetch("http://127.0.0.1:8000/generate_img", {
+    const response = await fetch("/generate_img", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

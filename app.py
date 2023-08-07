@@ -1,18 +1,15 @@
 import os
 import logging
+import mimetypes
 import openai
 from flask import Flask, request, jsonify, send_from_directory
-from flask_cors import CORS
-from dotenv import load_dotenv
 
-load_dotenv()
-
+mimetypes.add_type('text/css', '.css')
+mimetypes.add_type('application/javascript', '.js')
 app = Flask(__name__, static_folder="static")
-CORS(app, resources={
-     r"/*": {"origins": ["http://localhost:5173", "http://127.0.0.1:5173"]}})
+
 
 # Static Files
-
 
 @app.route("/")
 def index():
@@ -26,7 +23,9 @@ def favicon():
 
 @app.route("/assets/<path:path>")
 def assets(path):
-    return send_from_directory("static/assets", path)
+    response = send_from_directory("static/assets", path)
+    response.headers.set('Content-Type', mimetypes.guess_type(path)[0])
+    return response
 
 
 # AOAI Integration Settings
