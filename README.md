@@ -5,3 +5,5 @@ This repo contains sample code for a simple image generate webapp that integrate
 This project is based on [microsoft's sample-app-aoai-chatGPT](https://github.com/microsoft/sample-app-aoai-chatGPT).
 
 [Original README](README-original.md)
+
+The method of deploying to Azure Functions can be found in another branch.
